@@ -1,6 +1,6 @@
 # Agent 360 Lookup (Tawuniya CX, Sutherland x Denodo POC)
 
-Illustrative UI for the Agent 360 customer lookup. One search by National ID, Iqama number or policy number
+Illustrative UI for the Agent 360 customer lookup. One search by National ID or Iqama number, or by policy number
 shows every policy (active and inactive), the endorsements under each policy, and any active exception
 (error) for that customer, across Health and Motor.
 

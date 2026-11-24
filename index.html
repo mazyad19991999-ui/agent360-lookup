@@ -200,6 +200,24 @@
     .idrow h2 { font-size:24px; } .stat { padding:14px; } .stat b { font-size:22px; } .stat .ic { display:none; }
   }
   @media (prefers-reduced-motion:reduce) { *, *::before, *::after { animation:none !important; transition:none !important; } }
+
+  .grp { display:flex; align-items:center; gap:10px; margin:6px 0 12px; }
+  .grp h4 { font-size:15px; font-weight:800; letter-spacing:-.01em; }
+  .grp .tag { font-size:12px; font-weight:700; color:var(--p); background:var(--p-soft); padding:2px 10px; border-radius:999px; }
+  .grp .cnt2 { color:var(--mute); font-size:13px; }
+  .pgroup + .pgroup { margin-top:26px; }
+  .nopol { background:#fff; border-radius:20px; padding:20px 22px; color:var(--mute); box-shadow:var(--shadow-sm); }
+  .tl small + small { display:block; margin-top:1px; }
+  .stat .sub { display:block; font-size:12px; color:var(--mute); margin-top:2px; }
+  .pbody .meta { grid-template-columns:repeat(4,1fr); row-gap:16px; }
+  .rule { background:#F8F6FF; border:1px dashed var(--p-mid); border-radius:12px; padding:10px 12px; font-size:12.5px; color:var(--ink2); }
+  .chip.warn { background:rgba(255,200,90,.28); color:#FFE3A6; }
+  .tbl { width:100%; border-collapse:collapse; font-size:13px; margin:4px 0 14px; }
+  .tbl th { text-align:left; font-weight:600; color:var(--mute); font-size:12px; padding:6px 8px; border-bottom:1px solid var(--line, #E7E2FA); }
+  .tbl td { padding:8px; border-bottom:1px solid #F0ECFD; vertical-align:top; }
+  .tbl td.r, .tbl th.r { text-align:right; }
+  .pbody .tl + .lab, .pbody .tbl + .lab { margin-top:18px; }
+  .bal { display:flex; gap:8px; align-items:center; margin:0 0 8px; font-size:13px; color:var(--ink2); }
 </style>
 </head>
 <body class="landing">
@@ -222,13 +240,12 @@
     <p class="lead">Every policy, endorsement and open error across Health and Motor, on one screen.</p>
     <div class="finder">
       <div class="tabs" id="seg" role="group" aria-label="Search by">
-        <button data-mode="nid" aria-pressed="true">National ID</button>
-        <button data-mode="iqama" aria-pressed="false">Iqama number</button>
+        <button data-mode="id" aria-pressed="true">National ID / Iqama number</button>
         <button data-mode="policy" aria-pressed="false">Policy number</button>
       </div>
       <form class="search" id="form" role="search">
         <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><circle cx="11" cy="11" r="7"/><path d="M20 20l-3.5-3.5"/></svg>
-        <input id="q" autocomplete="off" aria-label="Search value" placeholder="10 digit National ID, e.g. 1087654321">
+        <input id="q" autocomplete="off" aria-label="Search value" placeholder="10 digit National ID or Iqama number, e.g. 1087654321">
         <button class="go" type="submit">Search</button>
       </form>
       <div class="note">Every lookup is logged for audit. This is a read only view: nothing is copied from the source systems.</div>
@@ -238,9 +255,9 @@
 </header>
 
 <section class="explain">
-  <div class="c"><div class="ic" style="background:var(--p-soft);color:var(--p)"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="8" r="4"/><path d="M4 21c1-4 4-6 8-6s7 2 8 6"/></svg></div><h3>Who the customer is</h3><p>Golden ID, contact details, consent, employer, broker and household.</p><span class="tag">Informatica MDM</span></div>
-  <div class="c"><div class="ic" style="background:var(--p-soft);color:var(--p)"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20.8 4.6a5.5 5.5 0 0 0-7.8 0L12 5.7l-1-1.1a5.5 5.5 0 0 0-7.8 7.8l1 1.1L12 21l7.8-7.5 1-1.1a5.5 5.5 0 0 0 0-7.8z"/></svg></div><h3>Health policies</h3><p>Active and inactive Health policies, with members and endorsements.</p><span class="tag">Medgo</span></div>
-  <div class="c"><div class="ic" style="background:#E4DEFA;color:var(--p-deep)"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 17h14M3 13l2-6h14l2 6v4H3zM7 17v2M17 17v2"/></svg></div><h3>Motor policies</h3><p>Active and inactive Motor policies, with vehicles and endorsements.</p><span class="tag">Motor core</span></div>
+  <div class="c"><div class="ic" style="background:var(--p-soft);color:var(--p)"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="8" r="4"/><path d="M4 21c1-4 4-6 8-6s7 2 8 6"/></svg></div><h3>Who the customer is</h3><p>Golden ID, ID details, contact details, client group and channel.</p><span class="tag">Informatica MDM</span></div>
+  <div class="c"><div class="ic" style="background:var(--p-soft);color:var(--p)"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20.8 4.6a5.5 5.5 0 0 0-7.8 0L12 5.7l-1-1.1a5.5 5.5 0 0 0-7.8 7.8l1 1.1L12 21l7.8-7.5 1-1.1a5.5 5.5 0 0 0 0-7.8z"/></svg></div><h3>Medgo policies</h3><p>Active and inactive medical group policies, with their endorsements.</p><span class="tag">Medgo</span></div>
+  <div class="c"><div class="ic" style="background:#E4DEFA;color:var(--p-deep)"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 17h14M3 13l2-6h14l2 6v4H3zM7 17v2M17 17v2"/></svg></div><h3>Motor policies</h3><p>Active and inactive motor policies, with vehicles and endorsements.</p><span class="tag">Motor core</span></div>
 </section>
 
 <main class="results" id="results"></main>
@@ -249,13 +266,15 @@
 
 <script src="data/customers.js"></script>
 <script>
-let mode = "nid", cur = null, filter = "all", hitPolicy = null;
-const ph = { nid:"10 digit National ID, e.g. 1087654321", iqama:"10 digit Iqama number, e.g. 2234567890", policy:"Policy number, e.g. POL-MED-41877" };
-const lbl = { nid:"National ID", iqama:"Iqama number", policy:"policy number" };
-const esc = s => String(s).replace(/[&<>"]/g, c => ({ "&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;" }[c]));
+let mode = "id", cur = null, filter = "all", hitPolicy = null;
+const ph = { id:"10 digit National ID or Iqama number, e.g. 1087654321", policy:"Policy number, e.g. POL-MTR-77120 or MDG-41877" };
+const lbl = { id:"National ID or Iqama number", policy:"policy number" };
+const esc = s => String(s == null ? "" : s).replace(/[&<>"]/g, c => ({ "&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;" }[c]));
 const norm = s => s.toUpperCase().replace(/[^A-Z0-9]/g,"");
 const maskMob = m => "+966 " + m[1] + "X XXX " + m.slice(-4);
 const maskMail = e => e ? e.replace(/^(.).*(@.*)$/, "$1***$2") : "Not on file";
+const fd = iso => iso ? new Date(iso).toLocaleDateString("en-GB", { day:"2-digit", month:"short", year:"numeric" }) : "Not available";
+const sar = n => "SAR " + Number(n).toLocaleString("en-US");
 const svg = d => `<svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">${d}</svg>`;
 const I = {
   heart:svg('<path d="M20.8 4.6a5.5 5.5 0 0 0-7.8 0L12 5.7l-1-1.1a5.5 5.5 0 0 0-7.8 7.8l1 1.1L12 21l7.8-7.5 1-1.1a5.5 5.5 0 0 0 0-7.8z"/>'),
@@ -269,98 +288,149 @@ const I = {
   user:svg('<circle cx="12" cy="8" r="4"/><path d="M4 21c1-4 4-6 8-6s7 2 8 6"/>'),
   chev:'<svg class="chev" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 8l5 5 5-5"/></svg>'
 };
-const tone = s => ({ Completed:"green", Active:"green", Paid:"green", Refunded:"green", "In progress":"amber", Rejected:"red", Inactive:"grey" }[s] || (/overdue/i.test(s) ? "red" : "grey"));
+const tone = s => ({ Completed:"green", Active:"green", "In progress":"amber", Rejected:"red", Inactive:"grey", Open:"red", "Awaiting customer":"amber", Escalated:"purple" }[s] || "grey");
 const pill = (t, c) => `<span class="pill ${c || tone(t)}">${esc(t)}</span>`;
 function toast(t) { const el = document.getElementById("toast"); el.textContent = t; el.classList.add("on"); clearTimeout(toast.t); toast.t = setTimeout(() => el.classList.remove("on"), 1600); }
 
+/* ----- derived values ----- */
+const endStatus = e => e.approved === "Rejected" ? "Rejected" : e.final === "Y" ? "Completed" : "In progress";
+function motorState(p) { return p.status === "ACTIVE" ? { active:true, label:"Active" } : { active:false, label:"Inactive: " + (p.status === "CANCELLED" ? "Cancelled" : "Expired") }; }
+function medgoState(p) {
+  if (p.endorsements.some(e => e.cancel === "Y" && e.final === "Y")) return { active:false, label:"Inactive: Cancelled" };
+  return new Date(p.to) < new Date() ? { active:false, label:"Inactive: Expired" } : { active:true, label:"Active" };
+}
+const lineName = l => ({ Medgo:"Medgo", Motor:"Motor core", Customer:"Customer master" }[l]);
+const allPolicies = c => [...c.medgoPolicies.map(p => ({ ...p, kind:"medgo" })), ...c.motorPolicies.map(p => ({ ...p, kind:"motor" }))];
+const stateOf = p => p.kind === "motor" ? motorState(p) : medgoState(p);
+
 function validate(m, v) {
-  const d = v.replace(/\D/g,"");
-  if (m === "nid") return /^1\d{9}$/.test(d) ? null : "A National ID has 10 digits and starts with 1.";
-  if (m === "iqama") return /^2\d{9}$/.test(d) ? null : "An Iqama number has 10 digits and starts with 2.";
-  return /^POL-(MED|MTR)-\d{4,6}$/.test(v.trim().toUpperCase()) ? null : "A policy number looks like POL-MED-30915 or POL-MTR-77120.";
+  if (m === "id") return /^[12]\d{9}$/.test(v.replace(/\D/g,"")) ? null : "A National ID (starts with 1) or Iqama number (starts with 2) has 10 digits.";
+  return /^(POL-MTR|MDG)-\d{4,6}$/.test(v.trim().toUpperCase()) ? null : "A policy number looks like POL-MTR-77120 (Motor) or MDG-41877 (Medgo).";
 }
 function find(m, v) {
-  if (m === "policy") { const n = norm(v); return CUSTOMERS.find(c => c.policies.some(p => norm(p.no) === n)); }
-  const d = v.replace(/\D/g,"");
-  return CUSTOMERS.find(c => (m === "nid" ? c.nationalId : c.iqama) === d);
+  if (m === "policy") { const n = norm(v); return CUSTOMERS.find(c => allPolicies(c).some(p => norm(p.no) === n)); }
+  const d = v.replace(/\D/g,""); return CUSTOMERS.find(c => c.idNo === d);
 }
 
-/* ===== render ===== */
+/* ----- render ----- */
 function idrow(c) {
-  const ok = c.mdm.status === "Matched", id = c.nationalId || c.iqama;
-  return `<div class="av">${c.init}</div><div><h2>${esc(c.name)}</h2><div class="ar" lang="ar">${esc(c.nameAr)}</div>
-    <div class="chips"><span class="chip copy" data-copy="${id}" title="Copy">${c.nationalId ? "National ID" : "Iqama"} ${id}</span>
-    ${ok ? `<span class="chip copy" data-copy="${c.goldenId}" title="Copy">Golden ID ${c.goldenId}</span><span class="chip good">Matched in MDM</span>` : '<span class="chip bad">No golden ID</span>'}
+  return `<div class="av">${c.init}</div><div><h2>${esc(c.nameEn)}</h2><div class="ar" lang="ar">${esc(c.nameAr)}</div>
+    <div class="chips"><span class="chip copy" data-copy="${c.idNo}" title="Copy">${c.idType} ${c.idNo}</span>
+    ${c.mdmId ? `<span class="chip copy" data-copy="${c.mdmId}" title="Copy">Golden ID ${c.mdmId}</span>` : '<span class="chip bad">No golden ID</span>'}
+    ${c.vip ? '<span class="chip warn">VIP</span>' : ""}${c.blacklist ? '<span class="chip bad">Blacklisted</span>' : ""}
     <span class="chip">Customer since ${c.since}</span></div></div>`;
 }
 
 function exceptionCard(x, i) {
+  const icon = x.line === "Customer" ? I.user : x.line === "Motor" ? I.car : I.heart;
   return `<div class="ex ${x.sev === "High" ? "high" : "med"} ${i === 0 ? "open" : ""}" data-ex="${i}">
-    <button class="head" aria-expanded="${i === 0}"><span class="ic">${x.system === "Informatica MDM" ? I.user : x.code.startsWith("PAY") ? I.card : x.code.startsWith("VAL") || x.code.includes("DOC") || x.code.includes("DEP") ? I.doc : I.alert}</span>
-      <span class="tt"><b>${esc(x.reason)}</b><small>${x.id} · ${esc(x.system)} · ${esc(x.ref)}</small></span>
-      ${pill(x.sev, x.sev === "High" ? "red" : "amber")}${pill(x.age + " open", "grey")}${I.chev}</button>
+    <button class="head" aria-expanded="${i === 0}"><span class="ic">${icon}</span>
+      <span class="tt"><b>${esc(x.title)}</b><small>${x.id} · ${lineName(x.line)} · ${esc(x.ref)}</small></span>
+      ${pill(x.status)}${pill(x.sev, x.sev === "High" ? "red" : "amber")}${pill(x.age + " open", "grey")}${I.chev}</button>
     <div class="body"><div class="cols">
       <div><div class="lab">What happened</div><div class="facts">
-        <div><span>Source system</span><b>${esc(x.system)}</b></div><div><span>Error code</span><b class="num">${x.code}</b></div>
-        <div><span>Transaction</span><b class="num">${esc(x.ref)}</b></div><div><span>Policy</span><a data-go="${x.policy}">${x.policy}</a></div></div></div>
+        <div><span>Source system</span><b>${lineName(x.line)}</b></div><div><span>Status</span><b>${esc(x.status)}</b></div>
+        <div><span>Reference</span><b class="num">${esc(x.ref)}</b></div>
+        ${x.policy ? `<div><span>Policy</span><a data-go="${x.policy}">${x.policy}</a></div>` : ""}
+        <div><span>How it was detected</span><div class="rule">${esc(x.rule)}</div></div></div></div>
       <div><div class="lab">What to tell the customer</div>
-        <div class="scr" lang="ar">${x.ar}</div><div class="scr">${esc(x.en)}</div>
-        <div class="acts"><button class="btn pri" data-act="Link sent by SMS">Send link by SMS</button><button class="btn" data-act="Outcome logged">Log outcome</button><button class="btn" data-act="Escalated to the owning team">Escalate</button></div>
-        <div class="done"></div></div>
+        <div class="scr" lang="ar">${x.ar}</div><div class="scr">${esc(x.en)}</div></div>
     </div></div></div>`;
 }
 
-function policyCard(c, p) {
-  const exs = c.exceptions.filter(e => e.policy === p.no).length, inactive = p.status === "Inactive", hit = hitPolicy === p.no;
-  const open = hit || (exs && !inactive);
-  const steps = p.end.map(e => `<li class="${tone(e[3]) === "green" ? "" : tone(e[3])}"><div><b>${esc(e[1])}</b><small>${e[0]}${e[4] ? " · " + esc(e[4]) : ""}</small></div><span class="d num">${e[2]}</span><span>${pill(e[3])}</span></li>`).join("");
-  return `<div class="pol ${inactive ? "inactive" : ""} ${hit ? "hit" : ""} ${open ? "open" : ""}" id="pol-${p.no}">
-    <button class="phead" aria-expanded="${!!open}">
-      <span class="ic" style="${p.line === "Health" ? "background:var(--p-soft);color:var(--p)" : "background:#E4DEFA;color:var(--p-deep)"}">${p.line === "Health" ? I.heart : I.car}</span>
-      <span class="pn"><b>${p.line}: ${esc(p.product)}</b><small class="num">${p.no}${hit ? " · searched policy" : ""}</small></span>
-      <span class="pm"><span>Coverage period</span><b class="num">${p.period}</b></span>
-      <span class="ps">${inactive ? pill("Inactive: " + p.reason, "grey") : pill("Active")}${exs ? pill(exs + (exs > 1 ? " errors" : " error"), "red") : ""}</span>${I.chev}
-    </button>
-    <div class="pbody">
-      <div class="meta"><div><span>${p.line === "Health" ? "Insured" : "Vehicle"}</span><b>${esc(p.insured)}</b></div><div><span>Annual premium</span><b class="num">${p.premium}</b></div><div><span>Payment</span>${pill(p.payment)}</div><div><span>Source system</span><b>${p.source}</b></div></div>
-      <div class="lab">Endorsements (${p.end.length})</div><ul class="tl">${steps}</ul>
-    </div></div>`;
+
+function ledgerHtml(p) {
+  const l = p.ledger || [];
+  if (!l.length) return "";
+  const inv = l.filter(t => t.dc === "D").reduce((n, t) => n + t.amount, 0), rec = l.filter(t => t.dc === "C").reduce((n, t) => n + t.amount, 0), due = inv - rec;
+  const rows = l.map(t => `<tr><td class="num">${t.no}</td><td>${esc(t.type)}: ${esc(t.sub)}</td><td class="num">${fd(t.date)}</td><td class="r num">${t.dc === "C" ? "-" : ""}${sar(t.amount)}</td></tr>`).join("");
+  return `<div class="lab">Payments</div><div class="bal">Invoiced ${sar(inv)}, received ${sar(rec)}, ${due > 0 ? pill("Outstanding " + sar(due), "red") : pill("Fully paid", "green")}</div>
+    <table class="tbl"><thead><tr><th>Transaction</th><th>Description</th><th>Date</th><th class="r">Amount</th></tr></thead><tbody>${rows}</tbody></table>`;
 }
-const policies = () => { const l = cur.policies.filter(p => filter === "all" || p.status.toLowerCase() === filter); return l.length ? l.map(p => policyCard(cur, p)).join("") : '<div class="state" style="margin:30px auto">No policies in this view.</div>'; };
+function membersHtml(p) {
+  const m = p.members || [];
+  if (!m.length) return "";
+  const rows = m.map(x => `<tr><td><b>${esc(x.nameEn)}</b><br><span lang="ar">${esc(x.nameAr)}</span></td><td>${esc(x.type)}</td><td class="num">${x.idNo ? x.idNo.slice(0, 2) + "XXXXXX" + x.idNo.slice(-2) : "Not on file"}</td><td class="num">${fd(x.from)}</td><td>${pill(x.active === "Y" ? "Active" : "Inactive")}</td><td>${x.card === "Y" ? "Issued" : pill("Not issued", "amber")}</td></tr>`).join("");
+  return `<div class="lab">Members (${m.length})</div><table class="tbl"><thead><tr><th>Member</th><th>Relation</th><th>ID</th><th>Cover from</th><th>Status</th><th>Card</th></tr></thead><tbody>${rows}</tbody></table>`;
+}
+const metaItem = (l, v) => `<div><span>${l}</span><b>${v}</b></div>`;
+function motorCard(c, p) {
+  const st = motorState(p), v = p.vehicle, hit = hitPolicy === p.no;
+  const exs = c.exceptions.filter(e => e.policy === p.no).length, open = hit || (exs && st.active);
+  const steps = p.endorsements.map(e => { const s = endStatus(e); return `<li class="${tone(s) === "green" ? "" : tone(s)}"><div><b>${esc(e.desc)}</b><small>${e.no} · type ${e.type}</small><small>Entered ${fd(e.entered)} · updated ${fd(e.updated)}</small></div><span class="d num">${fd(e.date)}</span><span>${pill(s)}</span></li>`; }).join("");
+  return `<div class="pol ${st.active ? "" : "inactive"} ${hit ? "hit" : ""} ${open ? "open" : ""}" id="pol-${p.no}">
+    <button class="phead" aria-expanded="${!!open}"><span class="ic" style="background:#E4DEFA;color:var(--p-deep)">${I.car}</span>
+      <span class="pn"><b>${esc(p.lob)}</b><small class="num">${p.no}${hit ? " · searched policy" : ""}</small></span>
+      <span class="pm"><span>Vehicle</span><b>${esc(v.model)} ${v.year}, ${esc(v.plate)}</b></span>
+      <span class="ps">${pill(st.label, st.active ? "green" : "grey")}${exs ? pill(exs + (exs > 1 ? " errors" : " error"), "red") : ""}</span>${I.chev}</button>
+    <div class="pbody"><div class="meta">
+      ${metaItem("Issued", fd(p.issued))}${metaItem("Policy status", esc(p.status) + (p.reason ? ", " + esc(p.reason) : ""))}${metaItem("Product option", esc(p.option))}${metaItem("No claim bonus", p.ncb === "Y" ? "Applied" : "Not applied")}
+      ${metaItem("Total contribution", sar(p.premium))}${metaItem("Basic contribution", sar(p.basic))}${metaItem("Loadings less discounts", (p.adj >= 0 ? "+" : "") + sar(p.adj))}${metaItem("Renewal contribution", p.renewal ? sar(p.renewal) : "Not applicable")}
+      ${metaItem("Vehicle", `${esc(v.model)} ${v.year}`)}${metaItem("Plate", esc(v.plate))}${metaItem("Chassis number", esc(v.chassis))}${metaItem("Colour, use, seats", `${esc(v.color)}, ${esc(v.usage)}, ${v.seats}`)}
+    </div><div class="lab">Endorsements (${p.endorsements.length})</div><ul class="tl">${steps}</ul>${ledgerHtml(p)}</div></div>`;
+}
+function medgoCard(c, p) {
+  const st = medgoState(p), hit = hitPolicy === p.no;
+  const exs = c.exceptions.filter(e => e.policy === p.no).length, open = hit || (exs && st.active);
+  const steps = p.endorsements.map(e => { const s = endStatus(e); return `<li class="${tone(s) === "green" ? "" : tone(s)}"><div><b>${esc(e.desc)}: ${esc(e.sub)}</b><small>${e.no} · ${esc(e.type)} · via ${esc(e.source)}</small><small>${e.delta === 0 ? "No contribution change" : (e.delta > 0 ? "+" : "") + sar(e.delta)}${e.approver ? " · approved by " + e.approver : ""}</small></div><span class="d num">${fd(e.date)}</span><span>${pill(s)}</span></li>`; }).join("");
+  return `<div class="pol ${st.active ? "" : "inactive"} ${hit ? "hit" : ""} ${open ? "open" : ""}" id="pol-${p.no}">
+    <button class="phead" aria-expanded="${!!open}"><span class="ic" style="background:var(--p-soft);color:var(--p)">${I.heart}</span>
+      <span class="pn"><b>${esc(p.plan)} medical group</b><small class="num">${p.no}${hit ? " · searched policy" : ""}</small></span>
+      <span class="pm"><span>Coverage period</span><b class="num">${fd(p.from)} to ${fd(p.to)}</b></span>
+      <span class="ps">${pill(st.label, st.active ? "green" : "grey")}${exs ? pill(exs + (exs > 1 ? " errors" : " error"), "red") : ""}</span>${I.chev}</button>
+    <div class="pbody"><div class="meta">
+      ${metaItem("Sponsor", esc(p.sponsor))}${metaItem("Sponsor (Arabic)", `<span lang="ar">${esc(p.sponsorAr)}</span>`)}${metaItem("Issuing branch", esc(p.branch))}${metaItem("Plan type", esc(p.plan))}
+      ${metaItem("Issued", fd(p.issued))}${metaItem("Starts", fd(p.from))}${metaItem("Ends", fd(p.to))}${metaItem("Currency", esc(p.currency))}
+      ${metaItem("Claims incurred", sar(p.claims))}${metaItem("Endorsements on policy", p.endtTotal)}
+    </div>${membersHtml(p)}<div class="lab">Endorsements (${p.endorsements.length})</div><ul class="tl">${steps}</ul>${ledgerHtml(p)}</div></div>`;
+}
+
+function group(title, tag, list, build, empty) {
+  const l = list.filter(p => filter === "all" || (stateOf(p).active ? "active" : "inactive") === filter);
+  return `<div class="pgroup"><div class="grp"><h4>${title}</h4><span class="tag">${tag}</span><span class="cnt2">${l.length} ${l.length === 1 ? "policy" : "policies"}</span></div>
+    ${l.length ? l.map(build).join("") : `<div class="nopol">${empty}</div>`}</div>`;
+}
+function policiesHtml() {
+  const c = cur, all = allPolicies(c);
+  const med = all.filter(p => p.kind === "medgo"), mot = all.filter(p => p.kind === "motor");
+  return group("Medgo policies (Health)", "Medgo", med, p => medgoCard(c, p), filter === "all" ? "No Medgo policies for this customer." : "No Medgo policies in this view.")
+       + group("Motor policies", "Motor core", mot, p => motorCard(c, p), filter === "all" ? "No Motor policies for this customer." : "No Motor policies in this view.");
+}
 
 function sidebar(c) {
-  const m = c.mdm, ok = m.status === "Matched";
-  const h = c.policies.filter(p => p.line === "Health").length, mo = c.policies.length - h;
   return `<aside class="side">
-    <div class="card"><h4>Contact and consent</h4><div class="kv">
-      <div><span>Mobile</span><b class="num">${maskMob(c.mobile)}</b></div><div><span>Email</span><b>${maskMail(c.email)}</b></div><div><span>Preferred language</span><b>${c.lang}</b></div>
-      <div><span>Consent</span><b class="consent" style="${ok ? "background:var(--green-bg);color:var(--green)" : "background:#ECEAF4;color:#6F6B93"}">${ok ? esc(c.consent) : "Not verified"}</b></div></div></div>
-    <div class="card"><h4>Relationships</h4><div class="kv"><div><span>Employer or group</span><b>${esc(m.group)}</b></div><div><span>Broker</span><b>${esc(m.broker)}</b></div><div><span>Household</span><b>${esc(m.household)}</b></div></div></div>
-    <div class="card"><h4>Source systems</h4>
-      <div class="srcrow ${ok ? "" : "bad"}"><span class="bub">MD</span><div><b>Informatica MDM</b><small>${ok ? "Matched, " + m.confidence + "% confidence" : "No golden record"}</small></div><span class="st"><small>Synced ${m.sync}</small></span></div>
-      <div class="srcrow"><span class="bub">ME</span><div><b>Medgo</b><small>${h} Health ${h === 1 ? "policy" : "policies"}</small></div><span class="st"><small>Synced ${m.sync}</small></span></div>
-      <div class="srcrow"><span class="bub">MC</span><div><b>Motor core</b><small>${mo} Motor ${mo === 1 ? "policy" : "policies"}</small></div><span class="st"><small>Synced ${m.sync}</small></span></div></div>
+    <div class="card"><h4>Customer</h4><div class="kv">
+      <div><span>Customer ID</span><b class="num">${c.custId}</b></div><div><span>Customer type</span><b>${c.type}</b></div><div><span>Nationality</span><b>${c.nationality}</b></div>
+      <div><span>${c.idType} expiry</span><b class="num">${fd(c.idExpiry)}</b></div></div></div>
+    <div class="card"><h4>Contact</h4><div class="kv">
+      <div><span>Mobile</span><b class="num">${maskMob(c.mobile)}</b></div><div><span>Email</span><b>${maskMail(c.email)}</b></div></div></div>
+    <div class="card"><h4>Relationships</h4><div class="kv">
+      <div><span>Client group</span><b>${esc(c.group)}</b></div><div><span>Channel</span><b>${esc(c.channel)}</b></div><div><span>Salesman code</span><b class="num">${esc(c.salesman)}</b></div></div></div>
   </aside>`;
 }
 
 function render() {
-  const c = cur, act = c.policies.filter(p => p.status === "Active").length, ina = c.policies.length - act;
-  const ends = c.policies.reduce((n, p) => n + p.end.length, 0), ex = c.exceptions;
+  const c = cur, all = allPolicies(c), ex = c.exceptions;
+  const act = all.filter(p => stateOf(p).active), ina = all.filter(p => !stateOf(p).active);
+  const split = l => `Medgo ${l.filter(p => p.kind === "medgo").length}, Motor ${l.filter(p => p.kind === "motor").length}`;
+  const ends = all.reduce((n, p) => n + (p.endorsements || []).length, 0);
+  const endSplit = `Medgo ${c.medgoPolicies.reduce((n, p) => n + p.endorsements.length, 0)}, Motor ${c.motorPolicies.reduce((n, p) => n + p.endorsements.length, 0)}`;
+  const exSplit = ["Medgo","Motor","Customer"].map(l => ex.filter(x => x.line === l).length ? `${lineName(l).replace(" master","")} ${ex.filter(x => x.line === l).length}` : "").filter(Boolean).join(", ");
   document.getElementById("idrow").innerHTML = idrow(c); document.getElementById("idrow").classList.add("show");
   document.getElementById("results").innerHTML = `
     <div class="stats">
-      <div class="stat"><span class="ic pu">${I.shield}</span><div><b>${act}</b><span>Active policies</span></div></div>
-      <div class="stat"><span class="ic gr">${I.off}</span><div><b>${ina}</b><span>Inactive policies</span></div></div>
-      <div class="stat"><span class="ic dp">${I.doc}</span><div><b>${ends}</b><span>Endorsements</span></div></div>
-      <div class="stat"><span class="ic ${ex.length ? "rd" : "gn"}">${ex.length ? I.alert : I.ok}</span><div><b>${ex.length}</b><span>Active exceptions</span></div></div>
+      <div class="stat"><span class="ic pu">${I.shield}</span><div><b>${act.length}</b><span>Active policies</span><span class="sub">${split(act)}</span></div></div>
+      <div class="stat"><span class="ic gr">${I.off}</span><div><b>${ina.length}</b><span>Inactive policies</span><span class="sub">${split(ina)}</span></div></div>
+      <div class="stat"><span class="ic dp">${I.doc}</span><div><b>${ends}</b><span>Endorsements</span><span class="sub">${endSplit}</span></div></div>
+      <div class="stat"><span class="ic ${ex.length ? "rd" : "gn"}">${ex.length ? I.alert : I.ok}</span><div><b>${ex.length}</b><span>Active exceptions</span><span class="sub">${exSplit || "None"}</span></div></div>
     </div>
-    ${c.mdm.status === "Matched" ? "" : '<div class="notice">This customer has no golden ID in Informatica MDM. Contact details and consent are not verified, so confirm them with the customer first.</div>'}
+    ${c.mdmId ? "" : '<div class="notice">This customer has no golden ID in Informatica MDM. Contact details are not verified, so confirm them with the customer first.</div>'}
     <div class="grid"><div>
       <section class="sec"><h3 class="sh">Active exceptions ${ex.length ? `<span class="cnt">${ex.length} open</span>` : ""}</h3>
         ${ex.length ? ex.map(exceptionCard).join("") : `<div class="allclear">${I.ok}No active exceptions. Nothing is failing for this customer right now.</div>`}</section>
       <section class="sec"><div class="row-h"><h3 class="sh">Policies and endorsements</h3>
-        <div class="filters" role="group" aria-label="Filter policies">${[["all","All " + c.policies.length],["active","Active " + act],["inactive","Inactive " + ina]].map(f => `<button data-f="${f[0]}" aria-pressed="${filter === f[0]}">${f[1]}</button>`).join("")}</div></div>
-        <div id="plist">${policies()}</div></section>
+        <div class="filters" role="group" aria-label="Filter policies">${[["all","All " + all.length],["active","Active " + act.length],["inactive","Inactive " + ina.length]].map(f => `<button data-f="${f[0]}" aria-pressed="${filter === f[0]}">${f[1]}</button>`).join("")}</div></div>
+        <div id="plist">${policiesHtml()}</div></section>
     </div>${sidebar(c)}</div>`;
   wire();
 }
@@ -369,14 +439,10 @@ function wire() {
   document.querySelectorAll("[data-copy]").forEach(el => el.onclick = () => { navigator.clipboard && navigator.clipboard.writeText(el.dataset.copy).catch(() => {}); toast("Copied " + el.dataset.copy); });
   document.querySelectorAll(".ex .head, .pol .phead").forEach(b => b.onclick = () => { const p = b.parentElement; p.classList.toggle("open"); b.setAttribute("aria-expanded", p.classList.contains("open")); });
   document.querySelectorAll("[data-go]").forEach(a => a.onclick = () => {
-    filter = "all"; document.getElementById("plist").innerHTML = policies(); syncF(); wire();
-    const t = document.getElementById("pol-" + a.dataset.go); t.classList.add("open", "pulse"); t.scrollIntoView({ behavior:"smooth", block:"center" }); setTimeout(() => t.classList.remove("pulse"), 1400);
+    filter = "all"; document.getElementById("plist").innerHTML = policiesHtml(); syncF(); wire();
+    const t = document.getElementById("pol-" + a.dataset.go); if (!t) return; t.classList.add("open", "pulse"); t.scrollIntoView({ behavior:"smooth", block:"center" }); setTimeout(() => t.classList.remove("pulse"), 1400);
   });
-  document.querySelectorAll("[data-f]").forEach(b => b.onclick = () => { filter = b.dataset.f; document.getElementById("plist").innerHTML = policies(); syncF(); wire(); });
-  document.querySelectorAll("[data-act]").forEach(b => b.onclick = () => {
-    const ex = cur.exceptions[+b.closest(".ex").dataset.ex], t = new Date().toLocaleTimeString([], { hour:"2-digit", minute:"2-digit" });
-    b.closest(".body").querySelector(".done").textContent = b.dataset.act + " for " + ex.id + " at " + t + " (demo only)";
-  });
+  document.querySelectorAll("[data-f]").forEach(b => b.onclick = () => { filter = b.dataset.f; document.getElementById("plist").innerHTML = policiesHtml(); syncF(); wire(); });
 }
 function syncF() { document.querySelectorAll("[data-f]").forEach(b => b.setAttribute("aria-pressed", b.dataset.f === filter)); }
 
@@ -389,7 +455,7 @@ function search() {
   setTimeout(() => {
     const c = find(mode, v);
     if (!c) { res.innerHTML = `<div class="state"><b>No customer found for ${lbl[mode]} ${esc(v)}</b>Check the value, or try another search type.</div>`; return; }
-    cur = c; filter = "all"; hitPolicy = mode === "policy" ? c.policies.find(p => norm(p.no) === norm(v)).no : null;
+    cur = c; filter = "all"; hitPolicy = mode === "policy" ? allPolicies(c).find(p => norm(p.no) === norm(v)).no : null;
     render(); window.scrollTo({ top:0 });
   }, 500);
 }
